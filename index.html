@@ -62,7 +62,7 @@ button{
 <!-- 🔐 NAME SCREEN -->
 <section id="start">
   <h1>💖 What should I call you?</h1>
-  <input id="name" placeholder="Shel">
+  <input id="name" placeholder="Amma">
   <button class="pink" onclick="start()">Start</button>
 </section>
 
@@ -80,10 +80,10 @@ button{
 
 <!-- 😏 GAME 2 -->
 <section id="quiz" class="hidden">
-  <h2 id="q2"></h2>
+  <h2>Do you wanna know something? 😏</h2>
 
-  <button class="pink" onclick="final()">Me ❤️</button>
-  <button class="gray" onclick="final()">You 😏</button>
+  <button class="pink" onclick="final()">Yes ❤️</button>
+  <button class="gray" onclick="final()">Tell me 😏</button>
 </section>
 
 <!-- 💌 FINAL -->
@@ -93,11 +93,11 @@ button{
 
 <script>
 
-let name="You";
+let name="Amma";
 
 /* START */
 function start(){
-  name=document.getElementById("name").value || "You";
+  name=document.getElementById("name").value || "Amma";
 
   document.getElementById("start").classList.add("hidden");
   document.getElementById("game").classList.remove("hidden");
@@ -123,9 +123,6 @@ function yes(){
 function quiz(){
   document.getElementById("game").classList.add("hidden");
   document.getElementById("quiz").classList.remove("hidden");
-
-  document.getElementById("q2").innerText =
-  `Okay ${name}, quick question 😏`;
 }
 
 /* FINAL SCREEN */
@@ -133,7 +130,7 @@ function final(){
   document.getElementById("quiz").classList.add("hidden");
   document.getElementById("final").classList.remove("hidden");
 
-  let msg = `💖 Hey ${name}...
+  let msg = `💖 ${name}...
 
 You actually finished everything 😏
 
