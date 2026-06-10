@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Click If You Love Me 💖</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:linear-gradient(135deg,#ffe6f0,#ffffff);
+  transition:0.5s;
+  text-align:center;
+  overflow:hidden;
+}
+
+.dark{
+  background:#0f172a;
+  color:white;
+}
+
+section{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+button{
+  padding:12px 20px;
+  border:none;
+  border-radius:15px;
+  margin:8px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.pink{background:#ff4d6d;color:white;}
+.gray{background:#ccc;}
+
+#no{
+  position:absolute;
+}
+
+.hidden{display:none;}
+
+#text{
+  max-width:500px;
+  font-size:20px;
+  white-space:pre-line;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🌙 THEME -->
+<button onclick="toggle()" style="position:fixed;top:10px;right:10px;">🌙</button>
+
+<!-- 🔐 NAME SCREEN -->
+<section id="start">
+  <h1>💖 What should I call you?</h1>
+  <input id="name" placeholder="Shel">
+  <button class="pink" onclick="start()">Start</button>
+</section>
+
+<!-- 💕 GAME 1 -->
+<section id="game" class="hidden">
+  <h2 id="q"></h2>
+
+  <button class="pink" onclick="yes()">Yes ❤️</button>
+  <button id="no" class="gray">No 💔</button>
+
+  <h3 id="msg" class="hidden">I knew it ❤️</h3>
+
+  <button id="next" class="hidden pink" onclick="quiz()">Next ➜</button>
+</section>
+
+<!-- 😏 GAME 2 -->
+<section id="quiz" class="hidden">
+  <h2 id="q2"></h2>
+
+  <button class="pink" onclick="final()">Me ❤️</button>
+  <button class="gray" onclick="final()">You 😏</button>
+</section>
+
+<!-- 💌 FINAL -->
+<section id="final" class="hidden">
+  <div id="text"></div>
+</section>
+
+<script>
+
+let name="You";
+
+/* START */
+function start(){
+  name=document.getElementById("name").value || "You";
+
+  document.getElementById("start").classList.add("hidden");
+  document.getElementById("game").classList.remove("hidden");
+
+  document.getElementById("q").innerText =
+  `Do you love me, ${name}? 😏`;
+}
+
+/* RUNAWAY NO */
+document.addEventListener("mousemove",()=>{
+  let no=document.getElementById("no");
+  no.style.left=Math.random()*window.innerWidth+"px";
+  no.style.top=Math.random()*window.innerHeight+"px";
+});
+
+/* YES */
+function yes(){
+  document.getElementById("msg").classList.remove("hidden");
+  document.getElementById("next").classList.remove("hidden");
+}
+
+/* NEXT */
+function quiz(){
+  document.getElementById("game").classList.add("hidden");
+  document.getElementById("quiz").classList.remove("hidden");
+
+  document.getElementById("q2").innerText =
+  `Okay ${name}, quick question 😏`;
+}
+
+/* FINAL SCREEN */
+function final(){
+  document.getElementById("quiz").classList.add("hidden");
+  document.getElementById("final").classList.remove("hidden");
+
+  let msg = `💖 Hey ${name}...
+
+You actually finished everything 😏
+
+So I'll be coming on 11th:
+
+Adareii thangam.
+godaaak
+
+— Ummmaaaa💖`;
+
+  let i=0;
+  function type(){
+    if(i<msg.length){
+      document.getElementById("text").innerHTML += msg[i];
+      i++;
+      setTimeout(type,40);
+    }
+  }
+  type();
+}
+
+/* THEME */
+function toggle(){
+  document.body.classList.toggle("dark");
+}
+
+</script>
+
+</body>
+</html>
